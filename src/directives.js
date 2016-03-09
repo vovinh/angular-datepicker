@@ -28,11 +28,17 @@ angular.module('angular-datepicker', [])
                                 scope.pickADate = null;                            
                                 return;                        
                             }                        
-                            if (!scope.pickADate || typeof scope.pickADate === 'string') scope.pickADate = new Date(0);
+                            if (!scope.pickADate || typeof scope.pickADate === 'string') 
+							{ 
+								scope.pickADate = new Date(0);
+								//scope.pickADate.setMinutes(scope.pickADate.getMinutes() - scope.pickADate.getTimezoneOffset());
+							}
                             scope.pickADate.setYear(select.obj.getFullYear());
                             scope.pickADate.setMonth(select.obj.getMonth());
                             scope.pickADate.setDate(select.obj.getDate());
-                        });
+							scope.pickADate.setHours(select.obj.getHours());
+							scope.pickADate.setMinutes(select.obj.getMinutes() - scope.pickADate.getTimezoneOffset());
+						});
                     }
                 }
 
